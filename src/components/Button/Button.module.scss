@@ -1,0 +1,14 @@
+.btn {
+	width: 100%;
+	padding: 8px 20px;
+	border-radius: 100px;
+	background: var(--eee, #eee);
+	border: none;
+	color: var(--dark);
+	font-size: 16px;
+	transition: 0.3s all ease;
+	&:hover {
+		outline: 1px solid #eee;
+		box-shadow: 3px 3px 10px #eee;
+	}
+}
