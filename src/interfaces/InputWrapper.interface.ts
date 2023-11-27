@@ -1,5 +1,7 @@
+import { ReactNode } from 'react';
+
 export interface IInputWrapper {
+	children: ReactNode;
 	index: number;
-	onChange: () => void;
-	onDelete: () => void;
+	onDelete: (index: number) => void;
 }
