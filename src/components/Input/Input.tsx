@@ -1,18 +1,21 @@
-import { ChangeEvent } from 'react';
-import { IInput } from '../../interfaces';
+import { Event, IInput } from '../../interfaces';
 import st from './Input.module.scss';
 
-export const Input = ({ value, placehoder, onChange }: IInput) => {
-	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-		const numberValue = parseInt(e.target.value);
-		if (isNaN(numberValue)) {
-			return onChange(numberValue);
-		}
-		onChange(e.target.value);
+export const Input = ({ value, placehoder, type, onChange }: IInput) => {
+	const handleChange = (e: Event) => {
+		onChange(e);
 	};
 	return (
-		<>
-			<input className={st.input} type='text' placeholder={placehoder} value={value} onChange={handleChange} />
-		</>
+		<label htmlFor={placehoder} className={st.label}>
+			<span className={st.label_text}>{placehoder}</span>
+			<input
+				className={st.input}
+				name={placehoder}
+				type={type}
+				placeholder={placehoder}
+				value={value}
+				onChange={handleChange}
+			/>
+		</label>
 	);
 };

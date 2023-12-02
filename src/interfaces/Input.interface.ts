@@ -1,7 +1,10 @@
-import { IExperiment } from './Experiment.interface';
+import { ChangeEvent } from 'react';
 
 export interface IInput {
 	value: string | number;
 	placehoder: 'type' | 'selector' | 'variant';
-	onChange: (value: IExperiment['type'] | IExperiment['selector'] | IExperiment['variant']) => void;
+	type: string;
+	onChange: (e: Event) => void;
 }
+
+export type Event = ChangeEvent<HTMLInputElement>;

@@ -1,13 +1,14 @@
 import { useState } from 'react';
-import { IExperiment } from '../../interfaces/Experiment.interface';
 import { Button } from '../Button';
 import { InputWrapper } from '../InputWrapper';
-import st from './App.module.scss';
 import { Input } from '../Input';
+import { IExperiment } from '../../interfaces/Experiment.interface';
+import { Event } from '../../interfaces';
+import st from './App.module.scss';
 
 const initialState: IExperiment = {
 	type: 'default',
-	selector: 'kek',
+	selector: '',
 	variant: 1,
 };
 
@@ -32,9 +33,22 @@ export const App = () => {
 		document.cookie = `xo-front/experiments=${encodeURIComponent(JSON.stringify(experimentList))}`;
 	};
 
-	const onChange = (index: number, experiment: IExperiment) => {
+	const onChange = (event: Event, index: number, key: string) => {
 		setExperimentList((prev) => {
-			return prev.filter((el, i) => (i === index ? experiment : el));
+			return prev.map((el, i) => {
+				if (i === index) {
+					return key === 'variant'
+						? {
+								...el,
+								[key]: Number(event.target.value),
+						  }
+						: {
+								...el,
+								[key]: event.target.value,
+						  };
+				}
+				return el;
+			});
 		});
 	};
 	return (
@@ -46,18 +60,21 @@ export const App = () => {
 						<InputWrapper key={index} onDelete={onDelete} index={index}>
 							<Input
 								placehoder='type'
+								type='text'
 								value={experiment.type}
-								onChange={() => onChange(index, experiment)}
+								onChange={(e: Event) => onChange(e, index, 'type')}
 							/>
 							<Input
 								placehoder='selector'
+								type='text'
 								value={experiment.selector}
-								onChange={() => onChange(index, experiment)}
+								onChange={(e: Event) => onChange(e, index, 'selector')}
 							/>
 							<Input
 								placehoder='variant'
+								type='number'
 								value={experiment.variant}
-								onChange={() => onChange(index, experiment)}
+								onChange={(e: Event) => onChange(e, index, 'variant')}
 							/>
 						</InputWrapper>
 					))
