@@ -2,7 +2,7 @@ import { ChangeEvent } from 'react';
 
 export interface IInput {
 	value: string | number;
-	placehoder: 'type' | 'selector' | 'variant';
+	name: 'type' | 'selector' | 'variant';
 	type: string;
 	onChange: (e: Event) => void;
 }

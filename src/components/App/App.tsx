@@ -4,6 +4,7 @@ import { InputWrapper } from '../InputWrapper';
 import { Input } from '../Input';
 import { IExperiment } from '../../interfaces/Experiment.interface';
 import { Event } from '../../interfaces';
+import { addCookies } from '../../addCookies';
 import st from './App.module.scss';
 
 const initialState: IExperiment = {
@@ -30,7 +31,8 @@ export const App = () => {
 	};
 
 	const onSave = () => {
-		document.cookie = `xo-front/experiments=${encodeURIComponent(JSON.stringify(experimentList))}`;
+		//document.cookie = `xo-front/experiments=${encodeURIComponent(JSON.stringify(experimentList))}`;
+		addCookies(experimentList);
 	};
 
 	const onChange = (event: Event, index: number, key: string) => {
@@ -59,19 +61,19 @@ export const App = () => {
 					experimentList.map((experiment, index) => (
 						<InputWrapper key={index} onDelete={onDelete} index={index}>
 							<Input
-								placehoder='type'
+								name='type'
 								type='text'
 								value={experiment.type}
 								onChange={(e: Event) => onChange(e, index, 'type')}
 							/>
 							<Input
-								placehoder='selector'
+								name='selector'
 								type='text'
 								value={experiment.selector}
 								onChange={(e: Event) => onChange(e, index, 'selector')}
 							/>
 							<Input
-								placehoder='variant'
+								name='variant'
 								type='number'
 								value={experiment.variant}
 								onChange={(e: Event) => onChange(e, index, 'variant')}

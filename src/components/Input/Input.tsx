@@ -1,21 +1,11 @@
-import { Event, IInput } from '../../interfaces';
+import { IInput } from '../../interfaces';
 import st from './Input.module.scss';
 
-export const Input = ({ value, placehoder, type, onChange }: IInput) => {
-	const handleChange = (e: Event) => {
-		onChange(e);
-	};
+export const Input = ({ value, name, type, onChange }: IInput) => {
 	return (
-		<label htmlFor={placehoder} className={st.label}>
-			<span className={st.label_text}>{placehoder}</span>
-			<input
-				className={st.input}
-				name={placehoder}
-				type={type}
-				placeholder={placehoder}
-				value={value}
-				onChange={handleChange}
-			/>
+		<label htmlFor={name} className={st.label}>
+			<span className={st.label_text}>{name}</span>
+			<input className={st.input} name={name} type={type} value={value} onChange={onChange} />
 		</label>
 	);
 };

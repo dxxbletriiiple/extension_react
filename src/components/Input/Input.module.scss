@@ -6,25 +6,18 @@
 	border: 1px solid var(--light);
 	border-radius: 6px;
 	transition: 0.3s all ease;
-	&:hover {
+	&:hover,
+	&:focus-visible {
 		box-shadow: 3px 3px 10px var(--light);
 	}
 }
 
 .label {
 	width: 100%;
-	&:not(input:focus) {
-		span {
-			display: none;
-		}
-	}
-	&:is(input:not(:placeholder-shown)) {
-		span {
-			display: block;
-		}
-	}
 }
+
 .label_text {
 	text-transform: capitalize;
-	transition: 0.3s all ease;
+	margin-bottom: 4px;
+	display: block;
 }
